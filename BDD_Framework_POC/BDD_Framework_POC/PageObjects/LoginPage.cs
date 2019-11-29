@@ -38,6 +38,11 @@ namespace BDD_Framework_POC.PageObjects
         [FindsBy(How = How.XPath, Using = "//a[text()='log in']")]
         private IWebElement login_button { get; set; }
 
+        [FindsBy(How = How.XPath, Using = "//p[text()='Please enter password']")]
+        private IWebElement pswd_err_msg { get; set; }
+
+        [FindsBy(How = How.XPath, Using = "//p[text()='Please Enter a Valid Email Id']")]
+        private IWebElement email_err_msg { get; set; }
 
         public LoginPage ClickOnLogin_link()
         {
@@ -62,8 +67,6 @@ namespace BDD_Framework_POC.PageObjects
             return this;
         }
 
-     
-
         public void ProfileMouseHover()
         {
 
@@ -78,6 +81,16 @@ namespace BDD_Framework_POC.PageObjects
             submit.Click();
             Thread.Sleep(100);
             return new HomePage(driver);
+        }
+
+        public string GetPasswordErrorMsg()
+        {
+            return pswd_err_msg.Text;
+        }
+
+        public string GetEmailErrorMsg()
+        {
+            return email_err_msg.Text;
         }
     }
 }
